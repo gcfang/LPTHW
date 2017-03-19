@@ -1,10 +1,10 @@
 # py2.7
-def apple():
+def apple(object):
 	print "I am an apple!"
 
 orange = "I am an orange!"
 
-class Song():
+class Song(object):
 	def __init__(self, lyrics):
 		self.lyrics = lyrics
 
