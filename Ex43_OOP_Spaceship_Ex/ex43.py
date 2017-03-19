@@ -32,7 +32,13 @@ class Death(Scene):
 
     def enter(self):
         print Death.quips[randint(0, len(self.quips)-1)]
-        exit(1)
+        print "Start a new game? (y/n)"
+        action = raw_input(">")
+
+        if action =="y":
+            return 'central_corridor'
+        else:
+            exit(1)
 
 class CentralCorridor(Scene):
 
@@ -47,11 +53,15 @@ class CentralCorridor(Scene):
         print "a Gothon jumps out, red scaly skin, dark grimy teeth, and evil clown costume"
         print "flowing around his hate filled body.  He's blocking the door to the"
         print "Armory and about to pull a weapon to blast you."
+        print "What would you do?\n"
+        print "shoot!"
+        print "dodge!"
+        print "tell a joke"
 
         action = raw_input("> ")
 
         if action == "shoot!":
-            print "Quick on the draw you yank out your blaster and fire it at the Gothon."
+            print "\nQuick on the draw you yank out your blaster and fire it at the Gothon."
             print "His clown costume is flowing and moving around his body, which throws"
             print "off your aim.  Your laser hits his costume but misses him entirely.  This"
             print "completely ruins his brand new costume his mother bought him, which"
@@ -60,7 +70,7 @@ class CentralCorridor(Scene):
             return 'death'
 
         elif action == "dodge!":
-            print "Like a world class boxer you dodge, weave, slip and slide right"
+            print "\nLike a world class boxer you dodge, weave, slip and slide right"
             print "as the Gothon's blaster cranks a laser past your head."
             print "In the middle of your artful dodge your foot slips and you"
             print "bang your head on the metal wall and pass out."
@@ -69,7 +79,7 @@ class CentralCorridor(Scene):
             return 'death'
 
         elif action == "tell a joke":
-            print "Lucky for you they made you learn Gothon insults in the academy."
+            print "\nLucky for you they made you learn Gothon insults in the academy."
             print "You tell the one Gothon joke you know:"
             print "Lbhe zbgure vf fb sng, jura fur fvgf nebhaq gur ubhfr, fur fvgf nebhaq gur ubhfr."
             print "The Gothon stops, tries not to laugh, then busts out laughing and can't move."
@@ -101,12 +111,12 @@ class LaserWeaponArmory(Scene):
             guess = raw_input("[keypad]> ")
 
         if guess == code:
-            print "The container clicks open and the seal breaks, letting gas out."
+            print "\nThe container clicks open and the seal breaks, letting gas out."
             print "You grab the neutron bomb and run as fast as you can to the"
             print "bridge where you must place it in the right spot."
             return 'the_bridge'
         else:
-            print "The lock buzzes one last time and then you hear a sickening"
+            print "\nThe lock buzzes one last time and then you hear a sickening"
             print "melting sound as the mechanism is fused together."
             print "You decide to sit there, and finally the Gothons blow up the"
             print "ship from their ship and you die."
@@ -121,11 +131,14 @@ class TheBridge(Scene):
         print "clown costume than the last.  They haven't pulled their"
         print "weapons out yet, as they see the active bomb under your"
         print "arm and don't want to set it off."
+        print "What would you do?\n"
+        print "throw the bomb"
+        print "slowly place the bomb"
 
         action = raw_input("> ")
 
         if action == "throw the bomb":
-            print "In a panic you throw the bomb at the group of Gothons"
+            print "\nIn a panic you throw the bomb at the group of Gothons"
             print "and make a leap for the door.  Right as you drop it a"
             print "Gothon shoots you right in the back killing you."
             print "As you die you see another Gothon frantically try to disarm"
@@ -134,7 +147,7 @@ class TheBridge(Scene):
             return 'death'
 
         elif action == "slowly place the bomb":
-            print "You point your blaster at the bomb under your arm"
+            print "\nYou point your blaster at the bomb under your arm"
             print "and the Gothons put their hands up and start to sweat."
             print "You inch backward to the door, open it, and then carefully"
             print "place the bomb on the floor, pointing your blaster at it."
@@ -163,13 +176,13 @@ class EscapePod(Scene):
 
 
         if int(guess) != good_pod:
-            print "You jump into pod %s and hit the eject button." % guess
+            print "\nYou jump into pod %s and hit the eject button." % guess
             print "The pod escapes out into the void of space, then"
             print "implodes as the hull ruptures, crushing your body"
             print "into jam jelly."
             return 'death'
         else:
-            print "You jump into pod %s and hit the eject button." % guess
+            print "\nYou jump into pod %s and hit the eject button." % guess
             print "The pod easily slides out into space heading to"
             print "the planet below.  As it flies to the planet, you look"
             print "back and see your ship implode then explode like a"
@@ -203,7 +216,8 @@ class Map(object):
     def opening_scene(self):
         return self.next_scene(self.start_scene)
 
-
+# a_map is an instance of class Map with initial parameters self and 'central_corridor'
 a_map = Map('central_corridor')
+# a_game is an instace of class Engine with initial parameters self and a_map
 a_game = Engine(a_map)
 a_game.play()
